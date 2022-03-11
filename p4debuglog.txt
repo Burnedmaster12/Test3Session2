@@ -139,4 +139,4 @@ The history is empty.
 114     output(n,x,a,result);
 115     return 0;
 116 }(gdb) Quit
-(gdb)
+
