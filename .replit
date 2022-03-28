@@ -1,2 +1,2 @@
-language = "bash"
-run = "pwd"
+language = "C"
+run = "gcc -g p1final.c;"
