@@ -1,1 +1,94 @@
+Enter a line of text:-
+hello world hello
+3 
+ gdb ./a.out;
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x87e: file p6final.c, line 57.
+(gdb) r
+Starting program: /home/runner/Test3Session2-1/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p6final.c:57
+57  {
+(gdb) s
+60    input_string(a);
+(gdb) s
+input_string (a=0x7ffc7fb822a0 "") at p6final.c:38
+38    printf("Enter a line of text:-\n");
+(gdb) n
+Enter a line of text:-
+39    fgets(a,100,stdin);
+(gdb) n
+hello world hello
+40  }
+(gdb) n
+main () at p6final.c:61
+61    n=count_words(a);
+(gdb) s
+count_words (a=0x7ffc7fb822a0 "hello world hello\n") at p6final.c:43
+43    int i=0;
+(gdb) n
+44    char *temp=strtok(a," ");
+(gdb) n
+45    while(temp!=NULL)
+(gdb) n
+47      i=i+1;
+(gdb) n
+48      temp=strtok(NULL," ");
+(gdb) n
+45    while(temp!=NULL)
+(gdb) n
+47      i=i+1;
+(gdb) n
+48      temp=strtok(NULL," ");
+(gdb) n
+45    while(temp!=NULL)
+(gdb) n
+47      i=i+1;
+(gdb) n
+48      temp=strtok(NULL," ");
+(gdb) n
+45    while(temp!=NULL)
+(gdb) n
+50    return i;
+(gdb) n
+51  }
+(gdb) n
+main () at p6final.c:62
+62    output(a,n);
+(gdb) s
+output (a=0x7ffc7fb822a0 "hello", no_words=3) at p6final.c:54
+54    printf("%d",no_words);
+(gdb) n
+55  }
+(gdb) n
+main () at p6final.c:63
+63    return 0;
+(gdb) n
+64  }(gdb) c
+Continuing.
+3[Inferior 1 (process 457) exited normally]
+(gdb) p
+The history is empty.
+(gdb) l
+59    char a[100],string[100];
+60    input_string(a);
+61    n=count_words(a);
+62    output(a,n);
+63    return 0;
+64  }(gdb)
