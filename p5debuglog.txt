@@ -1,1 +1,163 @@
+enter the array size
+5
+enter the array element 0
+75
+enter the array element 1
+84
+enter the array element 2
+62
+enter the array element 3
+76
+enter the array element 4
+12
+Largest element is present at index 1 and its value is 84.
+ gdb ./a.out;
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8d7: file p5final.c, line 77.
+(gdb) r
+Starting program: /home/runner/Test3Session2-1/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p5final.c:77
+77  {
+(gdb) s
+79    n=input_array_size();
+(gdb) s
+input_array_size () at p5final.c:50
+50  {
+(gdb) n
+52    printf("enter the array size\n");
+(gdb) n
+enter the array size
+53    scanf("%d",&n);
+(gdb) n
+5
+54    return n;
+(gdb) n
+55  }
+(gdb) n
+main () at p5final.c:80
+80    int a[n];
+(gdb) s
+81    input_array(n,a);
+(gdb) s
+input_array (n=5, a=0x7ffd513d0e10) at p5final.c:58
+58    for(i=0;i<n;i++)
+(gdb) n
+60    printf("enter the array element %d\n",i);
+(gdb) n
+enter the array element 0
+61    scanf("%d",&a[i]);
+(gdb) n
+75
+58    for(i=0;i<n;i++)
+(gdb) n
+60    printf("enter the array element %d\n",i);
+(gdb) n
+enter the array element 1
+61    scanf("%d",&a[i]);
+(gdb) n
+84
+58    for(i=0;i<n;i++)
+(gdb) n
+60    printf("enter the array element %d\n",i);
+(gdb) n
+enter the array element 2
+61    scanf("%d",&a[i]);
+(gdb) n
+62
+58    for(i=0;i<n;i++)
+(gdb) n
+60    printf("enter the array element %d\n",i);
+(gdb) n
+enter the array element 3
+61    scanf("%d",&a[i]);
+(gdb) n
+76
+58    for(i=0;i<n;i++)
+(gdb) 
+60    printf("enter the array element %d\n",i);
+(gdb) n
+enter the array element 4
+61    scanf("%d",&a[i]);
+(gdb) n
+12
+58    for(i=0;i<n;i++)
+(gdb) n
+63  }
+(gdb) n
+main () at p5final.c:82
+82    largest=find_largest(n,a);
+(gdb) s
+find_largest (n=5, a=0x7ffd513d0e10) at p5final.c:66
+66    int i,largest=0;
+(gdb) n
+67    for(i = 0;i<n;i++)
+(gdb) n
+68     if (a[i] > a[largest])
+(gdb) n
+67    for(i = 0;i<n;i++)
+(gdb) n
+68     if (a[i] > a[largest])
+(gdb) n
+69        largest = i;
+(gdb) n
+67    for(i = 0;i<n;i++)
+(gdb) n
+68     if (a[i] > a[largest])
+(gdb) n
+67    for(i = 0;i<n;i++)
+(gdb) n
+68     if (a[i] > a[largest])
+(gdb) n
+67    for(i = 0;i<n;i++)
+(gdb) n
+68     if (a[i] > a[largest])
+(gdb) n
+67    for(i = 0;i<n;i++)
+(gdb) n
+70    return largest;
+(gdb) n
+71  }
+(gdb) n
+main () at p5final.c:83
+83    out_put(n,a,largest);
+(gdb) s
+out_put (n=5, a=0x7ffd513d0e10, largest=1) at p5final.c:74
+74  printf("Largest element is present at index %d and its value is %d.\n",largest,a[largest]);
+(gdb) n
+Largest element is present at index 1 and its value is 84.
+75  }
+(gdb) n
+main () at p5final.c:84
+84    return 0;
+(gdb) n
+85  }(gdb) continue
+Continuing.
+[Inferior 1 (process 72) exited normally]
+(gdb) p
+The history is empty.
+(gdb) c
+The program is not being run.
+(gdb) l
+80    int a[n];
+81    input_array(n,a);
+82    largest=find_largest(n,a);
+83    out_put(n,a,largest);
+84    return 0;
+85  }(gdb)
