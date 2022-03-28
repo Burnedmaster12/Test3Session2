@@ -1,79 +1,76 @@
 #include<stdio.h>
-struct _fraction
+typedef struct fraction
 {
-int num,den;
-};
-typedef struct _fraction Fraction;
+int n,d;
+}fraction;
 
-int find_gcd(int a,int b)
-{
-  int t;
-    while (b!=0)
-      {
-        t = b;
-        b = a%b;
-        a = t;
-      }
-    return a;
-}
 
-Fraction input()
-{
-  Fraction F;
-  printf("enter the fraction one a/b in the form a_b\n");
-  scanf("%d%d",&F.num,&F.den);
-  return F;
-}
-
-void input_in_fractions(int n, Fraction f[n])
-{
-  printf("enter the number fractions: \n");
+int size()
+{ int n;
+  printf("enter the size of the array:");
   scanf("%d",&n);
+  return n;
+}
+
+fraction input()
+{
+  fraction f1;
+  printf("enter the numerator :\n");
+  scanf("%d",&f1.n);
+  printf("enter the denominator :\n");
+  scanf("%d",&f1.d);
+  return f1;
+}
+
+void input_fraction(int n,fraction f[n])
+{
   for(int i=0;i<n;i++)
     {
       f[i]=input();
     }
 }
 
-Fraction add_fractions(Fraction f1,Fraction f2)
+fraction add(fraction f1,fraction f2)
 {
-  Fraction f3;
-  int nu,de;
-  nu=f1.num * f2.den + f2.num * f1.den;
-  de=f2.den * f1.den
-    ;
-  f3.num=nu/find_gcd(nu,de);
-  f3.den=de/find_gcd(nu,de);
+  int i,hcf;
+  fraction a;
+   a.n=(f1.n*f2.d)+(f2.n*f1.d);
+   a.d=(f1.d*f2.d);
+  for(i=1;i<=100;i++)
+    if(a.n%i==0 && a.d%i==0)
+      hcf=i;
+  a.n=a.n/hcf;
+  a.d=a.d/hcf;
+
+  return a;
+}
+
+fraction add_fraction(int n,fraction f[n])
+{ fraction f3;
+     f3=add(f[0],f[1]);
+  for(int i=2;i<n;i++)
+    {
+      f3=add(f3,f[i]);
+    }
   return f3;
 }
 
-Fraction add_n_fractions(int n,Fraction f[n])
-{
-  Fraction S;
-  S.num=1;
-  S.den=1;
-  for(int i=0;i<n;i++)
+void output(int n,fraction f[n],fraction sum)
+{ printf("%d/%d ",f[0].n,f[0].d);
+  for(int i=1;i<n;i++)
     {
-      S=add_fractions(S,f[i]);
+      printf(" + %d/%d ",f[i].n,f[i].d);
     }
-  return S;
+  printf(" \n is %d/%d",sum.n,sum.d);
 }
 
-void output(int n,Fraction f[n],Fraction Sum)
-{
-  for(int i=0;i<n-1;i++)
-    {
-      printf("%d/%d +",f[i].num,f[i].den);
-    }
-  printf(" %d/%d \n= %d/%d\n",f[n-2].num,f[n-2].den,f[n-1].num,f[n-1].den);
-}
 int main()
 {
   int n;
-  Fraction a[n];
-  Fraction R;
-  input_in_fractions(n,a);
-  R=add_n_fractions(n,a);
-  output(n,a,R);
+  n=size();
+  fraction f[n];
+  input_fraction(n,f);
+  fraction sum=add_fraction(n,f);
+  output(n,f,sum);
   return 0;
 }
